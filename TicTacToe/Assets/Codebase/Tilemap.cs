@@ -1,27 +1,14 @@
 ﻿using System.Collections.Generic;
+using Codebase.Data;
+using CodeBase.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 
 namespace Codebase
 {
-    public class Tilemap : MonoBehaviour
+    public class Tilemap : MonoBehaviour , IProgressReader , IProgressWriter
     {
         public GameObject[] tiles;
-
-        private void Awake()
-        {
-           
-            var playerMoveService = new PlayerMoveService();
-            List<TileModel> tileModels = new List<TileModel>();
-            for (int i = 0; i < 9; i++)
-            {
-                var model = new TileModel();
-                model.TileId = i;
-                tileModels.Add(model);
-            }
-            
-            Construct(tileModels, playerMoveService);
-        }
-
+        private List<TileModel> _tileModels = new List<TileModel>();
 
         public void Construct(List<TileModel> tileModels, PlayerMoveService playerMoveService)
         {
@@ -29,6 +16,20 @@ namespace Codebase
             {
                 tiles[i].GetComponent<TileView>().Construct(tileModels[i], playerMoveService);
             }
+        }
+
+        public void LoadProgress(PlayerProgress progress)
+        {
+            var playerMoveService = new PlayerMoveService();
+            _tileModels = progress.TileData.tilesData;
+          
+            
+            Construct(_tileModels, playerMoveService);
+        }
+
+        public void UpdateProgress(PlayerProgress progress)
+        {
+            progress.TileData.tilesData = _tileModels;
         }
     }
 }

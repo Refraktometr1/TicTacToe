@@ -16,9 +16,10 @@ namespace Codebase
             _playerMoveService = playerMoveService;
         }
 
-        private void Awake()
+        private void Start()
         {
             button.onClick.AddListener(OnTileClick);
+            UpdateView();
         }
 
         private void OnTileClick()
@@ -27,8 +28,16 @@ namespace Codebase
                 return;
             
             _tileModel.FillModel(_playerMoveService.isCross);
-            text.text = _tileModel.IsCross ? "X" : "O";
+            UpdateView();
             _playerMoveService.EndMove();
+        }
+
+        private void UpdateView()
+        {
+            if (_tileModel.IsFilled)
+            {
+                text.text = _tileModel.IsCross ? "X" : "O";
+            }
         }
     }
 }

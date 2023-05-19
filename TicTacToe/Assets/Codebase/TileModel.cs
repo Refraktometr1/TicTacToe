@@ -1,13 +1,14 @@
-using UnityEngine;
+using System;
 
 namespace Codebase
 {
+    [Serializable]
     public class TileModel 
     {
         public int TileId;
-        public bool IsFilled { get; private set; }
+        public bool IsFilled;
 
-        public bool IsCross { get; private set; }
+        public bool IsCross;
 
         public void FillModel(bool fillByCross)
         {
