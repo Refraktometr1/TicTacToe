@@ -1,6 +1,9 @@
-﻿namespace UnityEngine.EventSystems;
+﻿using UnityEngine;
 
-public class Tilemap
+namespace Codebase
 {
-    
+    public class Tilemap : MonoBehaviour
+    {
+        public GameObject[] tilesView;
+    }
 }

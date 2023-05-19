@@ -18,6 +18,15 @@ namespace Codebase
             isCross = !isCross;
             isActiveFirstPlayer = !isActiveFirstPlayer;
             moveCounter++;
+            if (moveCounter == 9)
+            {
+                EndGame();
+            }
+        }
+
+        private void EndGame()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
