@@ -20,13 +20,11 @@ namespace Codebase
             }
             
             Construct(tileModels, playerMoveService);
-
         }
 
 
         public void Construct(List<TileModel> tileModels, PlayerMoveService playerMoveService)
         {
-           
             for (int i = 0; i < tiles.Length; i++)
             {
                 tiles[i].GetComponent<TileView>().Construct(tileModels[i], playerMoveService);
