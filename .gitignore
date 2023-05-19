@@ -2,13 +2,17 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Uu]ser[Ss]ettings/
+TicTacToe/.vs
+TicTacToe/Temp
+TicTacToe/.idea
+TicTacToe/Assembly-CSharp.csproj
+TicTacToe/Assembly-CSharp-Editor.csproj
+TicTacToe/Assets/Plugins/Editor/JetBrains
+TicTacToe/Library
+TicTacToe/Logs
+TicTacToe/obj
+TicTacToe/ProjectSettings
+TicTacToe/UserSettings
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -51,6 +55,8 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
+*.log.meta
+*.meta
 
 # Unity3D generated file on crash reports
 sysinfo.txt
