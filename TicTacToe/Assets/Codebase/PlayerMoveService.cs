@@ -1,12 +1,12 @@
 namespace Codebase
 {
-    public class ActivePlayer
+    public class PlayerMoveService
     {
         public bool isCross;
         private bool isActiveFirstPlayer;
         private int moveCounter;
 
-        public ActivePlayer()
+        public PlayerMoveService()
         {
             isCross = true;
             isActiveFirstPlayer = true;

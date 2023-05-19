@@ -5,16 +5,15 @@ namespace Codebase
 {
     public class TileView : MonoBehaviour
     {
-        public int Tileid;
         [SerializeField] private Text text;
         [SerializeField] private Button button;
-        private Tile _tileModel;
-        private ActivePlayer _activePlayer;
+        private TileModel _tileModel;
+        private PlayerMoveService _playerMoveService;
 
-        public void Construct(Tile tileModel, ActivePlayer activePlayer)
+        public void Construct(TileModel tileModelModel, PlayerMoveService playerMoveService)
         {
-            _tileModel = tileModel;
-            _activePlayer = activePlayer;
+            _tileModel = tileModelModel;
+            _playerMoveService = playerMoveService;
         }
 
         private void Awake()
@@ -24,9 +23,12 @@ namespace Codebase
 
         private void OnTileClick()
         {
-            _tileModel.isCross = _activePlayer.isCross;
-            _tileModel.isActive = false;
-            _activePlayer.EndMove();
+            if (_tileModel.IsFilled) 
+                return;
+            
+            _tileModel.FillModel(_playerMoveService.isCross);
+            text.text = _tileModel.IsCross ? "X" : "O";
+            _playerMoveService.EndMove();
         }
     }
 }
