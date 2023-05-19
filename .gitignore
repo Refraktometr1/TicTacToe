@@ -11,8 +11,6 @@ TicTacToe/Assets/Plugins/Editor/JetBrains
 TicTacToe/Library
 TicTacToe/Logs
 TicTacToe/obj
-TicTacToe/ProjectSettings
-TicTacToe/UserSettings
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
