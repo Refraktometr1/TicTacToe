@@ -1,4 +1,5 @@
-﻿using CodeBase.Infrastructure.Factory;
+﻿using Codebase.Data;
+using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.SaveLoad;
 using UnityEngine;
@@ -59,8 +60,18 @@ namespace CodeBase.Infrastructure.States
       var mainCanvas = _gameFactory.CreateMainCanvas();
       _gameFactory.CreateTileMap(mainCanvas.transform);
       var infoPanel = _gameFactory.CreateGameInfoPanel(mainCanvas.transform);
-      var saveButton = _gameFactory.CreateSaveButton(infoPanel.transform);
+      
+      var saveButton = _gameFactory.CreateButton(infoPanel.transform, AssetsPath.SaveButton);
       saveButton.onClick.AddListener(_saveLoadService.SaveProgress);
+
+      var mainMenuButton = _gameFactory.CreateButton(infoPanel.transform, AssetsPath.MainMenuButton);
+      mainMenuButton.onClick.AddListener(ToMainMenu);
+    }
+
+    private void ToMainMenu()
+    {
+      SceneManager.LoadSceneAsync("MainMenu");
+      _stateMachine.Enter<LoadProgressState>();
     }
   }
 }

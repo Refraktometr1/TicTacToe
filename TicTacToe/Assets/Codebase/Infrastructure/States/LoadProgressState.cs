@@ -1,9 +1,11 @@
 using System.Collections.Generic;
-using Codebase;
 using Codebase.Data;
+using Codebase.GameLogic;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.SaveLoad;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace CodeBase.Infrastructure.States
@@ -14,6 +16,7 @@ namespace CodeBase.Infrastructure.States
     private IPersistentProgressService _progressService;
     private ISaveLoadService _saveLoadProgress;
     private IGameFactory _gameFactory;
+    private AsyncOperation _loadScene;
 
 
     [Inject]
@@ -28,15 +31,22 @@ namespace CodeBase.Infrastructure.States
 
     public void Enter()
     {
+      _loadScene = SceneManager.LoadSceneAsync("MainMenu");
+      _loadScene.completed += OnLoaded;
+    }
+
+    private void OnLoaded(AsyncOperation obj)
+    {
       var mainCanvas = _gameFactory.CreateMainCanvas();
-      var newGameButton = _gameFactory.CreateNewGameButton(mainCanvas.transform);
+      var newGameButton = _gameFactory.CreateButton(mainCanvas.transform, AssetsPath.NewGameButton);
       newGameButton.onClick.AddListener(LoadNewGame);
-      var loadGameButton = _gameFactory.CreateLoadGameButton(mainCanvas.transform);
+      var loadGameButton = _gameFactory.CreateButton(mainCanvas.transform, AssetsPath.LoadGameButton);
       loadGameButton.onClick.AddListener(LoadProgressOrInitNew);
     }
 
     public void Exit()
     {
+      _loadScene.completed -= OnLoaded;
     }
 
     private void LoadNewGame()

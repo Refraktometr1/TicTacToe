@@ -1,5 +1,6 @@
 ﻿using CodeBase.Infrastructure.States;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace CodeBase.Infrastructure
@@ -22,5 +23,6 @@ namespace CodeBase.Infrastructure
     {
       _stateMachine.Enter<LoadProgressState>();
     }
+
   }
 }

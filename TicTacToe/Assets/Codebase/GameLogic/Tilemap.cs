@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Codebase.Data;
-using Codebase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 
-namespace Codebase
+namespace Codebase.GameLogic
 {
     public class Tilemap : MonoBehaviour , IProgressReader , IProgressWriter
     {

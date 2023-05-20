@@ -1,6 +1,6 @@
 using System;
 
-namespace Codebase
+namespace Codebase.GameLogic
 {
     [Serializable]
     public class TileModel 

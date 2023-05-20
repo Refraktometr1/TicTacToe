@@ -1,7 +1,7 @@
 using Codebase.Data;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 
-namespace Codebase.Infrastructure.Services
+namespace Codebase.GameLogic
 {
     public class PlayerTurnOrderService : IPlayerTurnOrderService , IProgressReader, IProgressWriter
     {

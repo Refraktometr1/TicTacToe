@@ -1,5 +1,4 @@
 ﻿using System;
-using Codebase.Infrastructure.Services;
 
 namespace Codebase.Data
 {
@@ -14,13 +13,5 @@ namespace Codebase.Data
 
         public TileData TileData;
         public PlayerTurnOrderData PlayerTurnOrderData;
-    }
-
-    [Serializable]
-    public class PlayerTurnOrderData
-    {
-        public bool isCross;
-        public bool isActiveFirstPlayer;
-        public int moveCounter;
     }
 }

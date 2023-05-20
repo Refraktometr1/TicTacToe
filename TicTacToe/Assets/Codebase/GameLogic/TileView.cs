@@ -1,9 +1,7 @@
-﻿using Codebase.Infrastructure.Services;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
-namespace Codebase
+namespace Codebase.GameLogic
 {
     public class TileView : MonoBehaviour
     {

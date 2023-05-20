@@ -1,4 +1,4 @@
-﻿namespace Codebase.Infrastructure.Services
+﻿namespace Codebase.GameLogic
 {
     public interface IPlayerTurnOrderService
     {

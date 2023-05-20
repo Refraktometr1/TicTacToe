@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using Codebase;
-using Codebase.Infrastructure.Services;
+using Codebase.GameLogic;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,11 +15,6 @@ namespace CodeBase.Infrastructure.Factory
         public List<IProgressWriter> ProgressWriters { get; } = new List<IProgressWriter>();
 
         private IPersistentProgressService _progressService;
-        public Button CreateNewGameButton(Transform parent)
-        {
-            var gameObject = Object.Instantiate(Resources.Load<GameObject>("NewGameButton"), parent);
-            return gameObject.GetComponent<Button>(); 
-        }
 
         [Inject]
         public GameFactory(IPersistentProgressService progressService)
@@ -28,14 +22,16 @@ namespace CodeBase.Infrastructure.Factory
             _progressService = progressService;
         }
 
-        public Button CreateLoadGameButton(Transform parent)
-        {
-            var gameObject = Object.Instantiate(Resources.Load<GameObject>("LoadGameButton"), parent);
-            return gameObject.GetComponent<Button>();
-        }
+      
 
-        public GameObject CreateMainCanvas() => Object.Instantiate(Resources.Load<GameObject>("MainMenuCanvas"));
+        public Button CreateButton(Transform parent, string path)
+        {
+            var gameObject = Object.Instantiate(Resources.Load<GameObject>(path), parent);
+            return gameObject.GetComponent<Button>(); 
+        }
         
+        public GameObject CreateMainCanvas() => Object.Instantiate(Resources.Load<GameObject>("MainCanvas"));
+
         public Tilemap CreateTileMap(Transform parent)
         {
             var gameObject = Object.Instantiate(Resources.Load<GameObject>("Tilemap"), parent);
@@ -53,18 +49,11 @@ namespace CodeBase.Infrastructure.Factory
             
             return tilemap;
         }
-        
+
         public GameObject CreateGameInfoPanel(Transform parent)
         {
             return Object.Instantiate(Resources.Load<GameObject>("GameInfoPanel"), parent);
         }
-
-        public Button CreateSaveButton(Transform infoPanelTransform)
-        {
-            var buttonGameObject = Object.Instantiate(Resources.Load<GameObject>("SaveButton"), infoPanelTransform);
-            return buttonGameObject.GetComponent<Button>();
-        }
-
 
         public void Cleanup()
         {

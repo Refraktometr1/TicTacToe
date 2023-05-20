@@ -1,6 +1,4 @@
-﻿using Codebase.Infrastructure.Services;
-
-namespace Codebase
+﻿namespace Codebase.GameLogic
 {
     public class TileController : ITileController
     {
@@ -16,10 +14,5 @@ namespace Codebase
             tileModel.IsCross = _playerTurnOrderService.IsCrossTurn();
             tileModel.IsFilled = true;
         }
-    }
-
-    public interface ITileController
-    {
-        public void FillModel(TileModel tileModel);
     }
 }
