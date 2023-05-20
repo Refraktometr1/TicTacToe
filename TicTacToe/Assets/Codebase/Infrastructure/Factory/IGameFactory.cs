@@ -17,7 +17,7 @@ namespace CodeBase.Infrastructure.Factory
     void Cleanup();
     
     GameObject CreateMainCanvas();
-    Tilemap CreateTileMap(Transform parent);
+    Tilemap CreateTileMap(Transform parent, Transform mainCanvasTransform);
     GameObject CreateGameInfoPanel(Transform parent);
     Button CreateButton(Transform parent, string path);
   }

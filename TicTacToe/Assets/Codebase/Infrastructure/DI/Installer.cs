@@ -23,7 +23,6 @@ namespace Codebase.Infrastructure.DI
             Container.Bind<IPersistentProgressService>().To<PersistentProgressService>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
             Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
-            Container.Bind<AssetsPath>().To<AssetsPath>().AsSingle();
         }
     }
 }

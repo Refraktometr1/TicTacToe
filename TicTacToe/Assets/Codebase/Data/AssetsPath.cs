@@ -8,5 +8,6 @@
         public const string MainMenuButton = "Buttons/MainMenuButton";
         public const string MainCanvas = "MainCanvas";
         public const string Tilemap = "Tilemap";
+        public const string EndGameText = "EndGameText";
     }
 }

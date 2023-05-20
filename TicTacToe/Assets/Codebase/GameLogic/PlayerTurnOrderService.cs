@@ -1,3 +1,4 @@
+using System;
 using Codebase.Data;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 
@@ -8,6 +9,7 @@ namespace Codebase.GameLogic
         private bool _isCross;
         private bool _isActiveFirstPlayer;
         private int _moveCounter;
+        public event Action MoveEnded;
 
         public PlayerTurnOrderService()
         {
@@ -21,20 +23,12 @@ namespace Codebase.GameLogic
             _isCross = !_isCross;
             _isActiveFirstPlayer = !_isActiveFirstPlayer;
             _moveCounter++;
-            if (_moveCounter == 9)
-            {
-                EndGame();
-            }
+            MoveEnded?.Invoke();
         }
 
         public bool IsCrossTurn()
         {
             return _isCross;
-        }
-
-        private void EndGame()
-        {
-            throw new System.NotImplementedException();
         }
 
         public void LoadProgress(PlayerProgress progress)

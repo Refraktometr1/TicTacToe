@@ -58,9 +58,11 @@ namespace CodeBase.Infrastructure.States
     private void InitGameWorld()
     {
       var mainCanvas = _gameFactory.CreateMainCanvas();
-      _gameFactory.CreateTileMap(mainCanvas.transform);
+      
       var infoPanel = _gameFactory.CreateGameInfoPanel(mainCanvas.transform);
       
+      _gameFactory.CreateTileMap(mainCanvas.transform, infoPanel.transform);
+
       var saveButton = _gameFactory.CreateButton(infoPanel.transform, AssetsPath.SaveButton);
       saveButton.onClick.AddListener(_saveLoadService.SaveProgress);
 
@@ -70,7 +72,6 @@ namespace CodeBase.Infrastructure.States
 
     private void ToMainMenu()
     {
-      SceneManager.LoadSceneAsync("MainMenu");
       _stateMachine.Enter<LoadProgressState>();
     }
   }

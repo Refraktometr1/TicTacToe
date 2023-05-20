@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Codebase;
+using Codebase.Data;
 using Codebase.GameLogic;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
@@ -32,7 +34,7 @@ namespace CodeBase.Infrastructure.Factory
         
         public GameObject CreateMainCanvas() => Object.Instantiate(Resources.Load<GameObject>("MainCanvas"));
 
-        public Tilemap CreateTileMap(Transform parent)
+        public Tilemap CreateTileMap(Transform parent, Transform mainCanvasTransform)
         {
             var gameObject = Object.Instantiate(Resources.Load<GameObject>("Tilemap"), parent);
             var tilemap = gameObject.GetComponent<Tilemap>();
@@ -40,10 +42,13 @@ namespace CodeBase.Infrastructure.Factory
             PlayerTurnOrderService playerTurnOrderService = new PlayerTurnOrderService();
             ProgressReaders.Add(playerTurnOrderService);
             ProgressWriters.Add(playerTurnOrderService);
+
+            var endgameText = Object.Instantiate(Resources.Load<GameObject>(AssetsPath.EndGameText), mainCanvasTransform);
             
             ITileController tileController = new TileController(playerTurnOrderService);
             
-            tilemap.Construct( playerTurnOrderService,  tileController);
+            tilemap.Construct( playerTurnOrderService,  tileController, endgameText.GetComponent<EndGameText>());
+            
             ProgressReaders.Add(tilemap);
             ProgressWriters.Add(tilemap);
             
