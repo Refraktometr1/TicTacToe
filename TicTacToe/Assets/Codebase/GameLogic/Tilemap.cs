@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Reflection.Emit;
 using Codebase.Data;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
-using UnityEngine.UI;
-using Zenject;
 
 namespace Codebase.GameLogic
 {
@@ -46,20 +43,30 @@ namespace Codebase.GameLogic
             {
                 if ( !_playerTurnOrderService.IsCrossTurn())
                 {
-                    _endGameText.Text.text = "Cross Win";
-                    foreach (var tileModel in _tileModels)
-                    {
-                        tileModel.IsFilled = true;
-                    }
+                    CrossWin();
                 }
                 else
                 {
-                    _endGameText.Text.text = "Circle Win";
-                    foreach (var tileModel in _tileModels)
-                    {
-                        tileModel.IsFilled = true;
-                    }
+                    CircleWin();
                 }
+            }
+        }
+
+        private void CircleWin()
+        {
+            _endGameText.Text.text = "Circle Win";
+            foreach (var tileModel in _tileModels)
+            {
+                tileModel.IsFilled = true;
+            }
+        }
+
+        private void CrossWin()
+        {
+            _endGameText.Text.text = "Cross Win";
+            foreach (var tileModel in _tileModels)
+            {
+                tileModel.IsFilled = true;
             }
         }
 

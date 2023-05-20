@@ -8,7 +8,7 @@ namespace Codebase.GameLogic
     {
         private bool _isCross;
         private bool _isActiveFirstPlayer;
-        private int _moveCounter;
+        public int _moveCounter;
         public event Action MoveEnded;
 
         public PlayerTurnOrderService()
