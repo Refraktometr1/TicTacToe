@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Codebase.Data;
+using Codebase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 
@@ -9,22 +10,32 @@ namespace Codebase
     {
         public GameObject[] tiles;
         private List<TileModel> _tileModels = new List<TileModel>();
+        private ITileController _tileController;
+        private IPlayerTurnOrderService _playerTurnOrderService;
 
-        public void Construct(List<TileModel> tileModels, PlayerMoveService playerMoveService)
+
+       
+        public void Construct(IPlayerTurnOrderService playerTurnOrderService, ITileController tileController)
+        {
+            _tileController = tileController;
+            _playerTurnOrderService = playerTurnOrderService;
+            _playerTurnOrderService = playerTurnOrderService;
+        }
+        
+
+        private void Init(List<TileModel> tileModels)
         {
             for (int i = 0; i < tiles.Length; i++)
             {
-                tiles[i].GetComponent<TileView>().Construct(tileModels[i], playerMoveService);
+                tiles[i].GetComponent<TileView>().Init(tileModels[i], _tileController, _playerTurnOrderService);
             }
         }
 
         public void LoadProgress(PlayerProgress progress)
         {
-            var playerMoveService = new PlayerMoveService();
             _tileModels = progress.TileData.tilesData;
-          
             
-            Construct(_tileModels, playerMoveService);
+            Init(_tileModels);
         }
 
         public void UpdateProgress(PlayerProgress progress)

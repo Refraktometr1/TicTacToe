@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using Codebase.Infrastructure.Services;
+using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Codebase
 {
@@ -8,12 +10,14 @@ namespace Codebase
         [SerializeField] private Text text;
         [SerializeField] private Button button;
         private TileModel _tileModel;
-        private PlayerMoveService _playerMoveService;
+        private IPlayerTurnOrderService _playerTurnOrderService;
+        private ITileController _tileController;
 
-        public void Construct(TileModel tileModelModel, PlayerMoveService playerMoveService)
+        public void Init(TileModel tileModelModel, ITileController tileController,  IPlayerTurnOrderService playerTurnOrderService)
         {
+            _playerTurnOrderService = playerTurnOrderService;
+            _tileController = tileController;
             _tileModel = tileModelModel;
-            _playerMoveService = playerMoveService;
         }
 
         private void Start()
@@ -27,9 +31,9 @@ namespace Codebase
             if (_tileModel.IsFilled) 
                 return;
             
-            _tileModel.FillModel(_playerMoveService.isCross);
+            _tileController.FillModel(_tileModel);
             UpdateView();
-            _playerMoveService.EndMove();
+            _playerTurnOrderService.EndMove();
         }
 
         private void UpdateView()

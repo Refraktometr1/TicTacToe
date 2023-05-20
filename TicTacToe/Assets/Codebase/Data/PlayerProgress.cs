@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using Codebase.Infrastructure.Services;
 
 namespace Codebase.Data
 {
@@ -9,14 +9,18 @@ namespace Codebase.Data
         public PlayerProgress()
         {
             TileData = new TileData();
+            PlayerTurnOrderData = new PlayerTurnOrderData();
         }
+
         public TileData TileData;
+        public PlayerTurnOrderData PlayerTurnOrderData;
     }
-    
-    
+
     [Serializable]
-    public class TileData
+    public class PlayerTurnOrderData
     {
-        public List<TileModel> tilesData = new List<TileModel>();
+        public bool isCross;
+        public bool isActiveFirstPlayer;
+        public int moveCounter;
     }
 }

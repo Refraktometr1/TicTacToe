@@ -1,5 +1,6 @@
 
 using CodeBase.Infrastructure.Factory;
+using Codebase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.Infrastructure.States;
@@ -21,6 +22,8 @@ namespace Codebase.Infrastructure.DI
             Container.Bind<IPersistentProgressService>().To<PersistentProgressService>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
             Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
+            Container.Bind<IPlayerTurnOrderService>().To<PlayerTurnOrderService>().AsSingle();
+            Container.Bind<ITileController>().To<TileController>().AsSingle();
         }
     }
 }
